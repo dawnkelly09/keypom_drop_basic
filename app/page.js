@@ -43,6 +43,21 @@ async function simpleDropKeypom(){
   const fundingAccount = await near.account(YOUR_ACCOUNT)
 
 // STEP 2: Create a set of access keys 
+  //Keypom SDK
+
+  // check for NEAR connection and init if does not exist
+  await initKeypom({
+    near,
+    network
+  })
+
+  // SDK error checks that must all pass to create drop
+  const {keys} = await createDrop({
+    account: fundingAccount, 
+    numKeys: 1,
+    depositPerUseNEAR: "1",
+  })
+  pubKeys = keys.publicKeys
 
 // STEP 3: Create the drop.
 
