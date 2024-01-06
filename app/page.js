@@ -1,4 +1,4 @@
-/ Each of the two methods to create this drop will have their own unique set of imports
+// Each of the two methods to create this drop will have their own unique set of imports
 
 // Imports used in the Keypom SDK method:
 const { initKeypom, createDrop, getEnv, formatLinkdropUrl } = require("@keypom/core");
@@ -51,7 +51,8 @@ async function simpleDropKeypom(){
     network
   })
 
-  // SDK error checks that must all pass to create drop
+  // STEP 3: Create the drop.
+    // SDK error checks that must all pass to create drop
   const {keys} = await createDrop({
     account: fundingAccount, 
     numKeys: 1,
@@ -59,9 +60,13 @@ async function simpleDropKeypom(){
   })
   pubKeys = keys.publicKeys
 
-// STEP 3: Create the drop.
-
 // STEP 4: Create linkdrops
+  const {contractId: KEYPOM_CONTRACT} = getEnv()
+  let linkdropUrl = formatLinkdropUrl({
+    customURL: "https://testnet.mynearwallet.com/linkdrop/CONTRACT_ID/SECRET_KEY",
+	  secretKeys: keys.secretKeys,
+	  contractId: KEYPOM_CONTRACT
+  })
 }
 
 simpleDropKeypom()
