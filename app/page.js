@@ -24,7 +24,7 @@ async function simpleDropKeypom(){
   const credentialsPath = path.join(homedir, CREDENTIALS_DIR)
   const YOUR_ACCOUNT = "keypom-docs-demo.testnet"
 
-  // NEAR-API-JS => 
+  // NEAR-API-JS 
 
     // Create a Keystore, which stores your access keys used to sign transactions
   let keyStore = new UnencryptedFileSystemKeyStore(credentialsPath)
